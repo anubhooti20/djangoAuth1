@@ -28,6 +28,7 @@ class UserLoginView(APIView):
   renderer_classes = [UserRenderer]
   def post(self, request, format=None):
     serializer = UserLoginSerializer(data=request.data)
+    # return a 400 response if the data was invalid
     serializer.is_valid(raise_exception=True)
     email = serializer.data.get('email')
     password = serializer.data.get('password')
